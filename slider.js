@@ -1,12 +1,12 @@
 let images = [{
-  file: "./slider/image 2.1.png",
-  title: "1"
+  url: "./slider/image2.1.png",
+  title: ""
 }, {
-  file: "./slider/image 2.png",
-  title: "2"
+  url: "./slider/image2.png",
+  title: ""
 }, {
-  file: "./slider/image 3.png",
-  title: "3"
+  url: "./slider/image3.png",
+  title: ""
 }];
 
 
@@ -22,6 +22,7 @@ function initSlider(options) {
   let sliderImages = document.querySelector(".slider__images");
   let sliderArrows = document.querySelector(".slider__arrows");
   let sliderDots = document.querySelector(".slider__dots");
+  let positionArrow = document.querySelector(".position_arrow");
   
   initImages();
   initArrows();
@@ -41,13 +42,13 @@ function initSlider(options) {
   
   function initImages() {
     images.forEach((image, index) => {
-      let imageDiv = `<div class="image n${index} ${index === 0? "active" : ""}" style="background-image:url(${images[index].file});" data-index="${index}"></div>`;
+      let imageDiv = `<div class="image n${index} ${index === 0? "active" : ""}" style="background-image:url(${images[index].url});" data-index="${index}"></div>`;
       sliderImages.innerHTML += imageDiv;
     });
   }
   
   function initArrows() {
-    sliderArrows.querySelectorAll(".slider__arrow").forEach(arrow => {
+    positionArrow.querySelectorAll(".slider__arrow").forEach(arrow => {
       arrow.addEventListener("click", function() {
         let curNumber = +sliderImages.querySelector(".active").dataset.index;
         let nextNumber;
@@ -88,7 +89,7 @@ function initSlider(options) {
     sliderImages.innerHTML += cropTitle(titleDiv, 50);
   }
   
-  function changeTitle(num) {
+  /*function changeTitle(num) {
     if (!images[num].title) return;
     let sliderTitle = sliderImages.querySelector(".slider__images-title");
     sliderTitle.innerText = cropTitle(images[num].title, 50);
@@ -101,7 +102,7 @@ function initSlider(options) {
       return title.substr(0, size) + "...";
     }
   }
-  
+  */
   function initAutoplay() {
     setInterval(() => {
       let curNumber = +sliderImages.querySelector(".active").dataset.index;
